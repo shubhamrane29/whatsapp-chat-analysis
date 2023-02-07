@@ -12,12 +12,19 @@ WhatsApp Chat Analyzer analyses WhatsApp group chats as well as personal chats. 
 ### Visualization
 
 **Top Statistics:** This contains the total number of messages, total number of words, and total number of media and links shared in the chat.
+
 **Daily Timeline:** It is a line graph of the daily activity in the group.
+
 **Activity Map:** The first bar graph contains the most active days of the week, and the second bar graph contains the most active month of the year.
+
 **Monthly Timlines:** It determines the monthly activeness of the group or of an individual.
+
 **Most Active Users:** This gives us the dataframe and bar chart of the users who are most active in the group. The dataframe contains each individual's activity percentage relative to the group's total activity.
+
 **Most Common Words:** This displays the top 20 most used words in the whole chat in bar chart format.
+
 **Emoji Analysis:** The top five most used emoji are presented in dataset format as well as in a pie chart to present the data visually.
+
 **Weekly Activity Map:** This is a heat map that indicates when the group or an individual is most active (both in terms of time and day).
 
 ### Web application and deployment
