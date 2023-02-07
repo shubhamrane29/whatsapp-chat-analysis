@@ -1,5 +1,6 @@
 import streamlit as st
 import matplotlib.pyplot as plt
+plt.style.use('dark_background')
 import helper
 import preprocessor
 import seaborn as sns
@@ -48,7 +49,8 @@ if uploaded_file is not None:
         st.title("Daily Timeline")
         daily_timeline = helper.daily_timeline(selected_user, df)
         fig, ax = plt.subplots()
-        ax.plot(daily_timeline['only_date'], daily_timeline['message'], color='black')
+        ax.plot(daily_timeline['only_date'], daily_timeline['message'], color = '#FB9A99')
+        ax.grid(False)
         plt.xticks(rotation='vertical')
         st.pyplot(fig)
 
@@ -60,7 +62,8 @@ if uploaded_file is not None:
             st.header('Most Active Day')
             most_active_day = helper.week_activity_map(selected_user, df)
             fig, ax = plt.subplots()
-            ax.bar(most_active_day.index, most_active_day.values, color = 'red')
+            ax.bar(most_active_day.index, most_active_day.values, color='#FF7F00')
+            ax.grid(False)
             plt.xticks(rotation = 'vertical')
             st.pyplot(fig)
 
@@ -68,7 +71,8 @@ if uploaded_file is not None:
             st.header('Most Active Month')
             most_active_month = helper.month_activity_map(selected_user, df)
             fig, ax = plt.subplots()
-            ax.bar(most_active_month.index, most_active_month.values, color = 'yellow')
+            ax.bar(most_active_month.index, most_active_month.values, color='#FDBF6F')
+            ax.grid(False)
             plt.xticks(rotation = 'vertical')
             st.pyplot(fig)
 
@@ -76,7 +80,8 @@ if uploaded_file is not None:
         st.title("Monthly Timeline")
         timeline = helper.monthly_timeline(selected_user, df)
         fig, ax = plt.subplots()
-        ax.plot(timeline['time'], timeline['message'], color='green')
+        ax.plot(timeline['time'], timeline['message'])
+        ax.grid(False)
         plt.xticks(rotation='vertical')
         st.pyplot(fig)
 
@@ -85,11 +90,12 @@ if uploaded_file is not None:
             st.title('Most Active Users')
             x, new_df = helper.most_busy_users(df)
             fig, ax = plt.subplots()
+            ax.grid(False)
 
             col1, col2 = st.columns(2)
 
             with col1:
-                ax.bar(x.index, x.values, color='red')
+                ax.bar(x.index, x.values, color='#6A3D9A')
                 plt.xticks(rotation='vertical')
                 st.pyplot(fig)
             with col2:
@@ -99,7 +105,8 @@ if uploaded_file is not None:
         most_common_df = helper.most_common_words(selected_user, df)
 
         fig,ax = plt.subplots()
-        ax.barh(most_common_df[0], most_common_df[1])
+        ax.barh(most_common_df[0], most_common_df[1], color = '#1F78B4')
+        ax.grid(False)
         plt.xticks(rotation='vertical')
         st.title('Most Common Words')
         st.pyplot(fig)
@@ -114,13 +121,13 @@ if uploaded_file is not None:
 
         with col2:
             fig, ax = plt.subplots()
-            ax.pie(emoji_df[1].head(), labels = emoji_df[0].head(), autopct = "%0.2f")
+            ax.pie(emoji_df[1].head(), colors = ['#33A02C','#1F78B4','#B15928','#FB9A99','#FF7F00'], labels = emoji_df[0].head(), autopct = "%0.2f")
             st.pyplot(fig)
 
         #Daily Active user heatmap
         st.title('Weekly Activity Map')
         user_heatmap = helper.activity_heatmap(selected_user,df)
         fig, ax = plt.subplots()
-        ax = sns.heatmap(user_heatmap)
+        ax = sns.heatmap(user_heatmap,cmap = 'Paired')
         st.pyplot(fig)
 
